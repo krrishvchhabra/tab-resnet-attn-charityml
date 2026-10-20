@@ -1,0 +1,5 @@
+Experiment,Pre-Act & LayerScale,SwiGLU & SE,Self-Attention,Accuracy,F0.5-Score,ROC-AUC,Parameters,Batch Latency (ms)
+Baseline (Standard Linear Projection),✗,✗,✗,0.8423,0.6902,0.9005,"90,753",2.51
+Phase 1: Embeddings + Residual (Pre-Phase 2),✗,✗,✗,0.8437,0.6876,0.9025,"90,497",1.71
+Phase 1: Tab-ResNet-Attn (Standard Post-Act),✗,✗,✓,0.8418,0.6902,0.9002,"177,793",3.82
+Phase 2 Proposed (Pre-Act + SwiGLU + SE + LayerScale),✓,✓,✓,0.8478,0.7023,0.9074,"177,793",2.46

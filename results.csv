@@ -1,0 +1,2 @@
+Model,Accuracy,Precision,Recall,F1-Score,F0.5-Score,Specificity,ROC-AUC,Parameters
+Proposed Tab-ResNet-Attn,0.8478,0.7275,0.6169,0.6676,0.7023,0.9239,0.9074,177793

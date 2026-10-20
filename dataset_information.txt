@@ -1,0 +1,43 @@
+================================================================================
+                    CHARITYML CENSUS DATASET INFORMATION
+================================================================================
+
+1. DATASET OVERVIEW:
+   - Source: 1994 U.S. Census Bureau Database ("Adult Census Income" benchmark)
+   - Total Records: 45,222
+   - Feature Columns: 13 (5 continuous numerical, 8 categorical)
+   - Target Label: 'income' (Binary: '<=50K' as 0, '>50K' as 1)
+
+2. CLASS DISTRIBUTION & IMBALANCE ANALYSIS:
+   - Total Samples: 45,222
+   - Class '<=50K' (Negative / 0): 34,014 samples (75.22%)
+   - Class '>50K'  (Positive / 1): 11,208 samples (24.78%)
+   - Imbalance Ratio: Approximately 3.03 : 1
+   - Evaluation Consequence: Raw accuracy alone is misleading; models must be 
+     optimized and benchmarked on F-beta (beta=0.5) and ROC-AUC.
+
+3. DATASET SPLIT (STRATIFIED):
+   - Training Set:   31,654 samples (70.0%)
+   - Validation Set:  4,523 samples (10.0%)
+   - Testing Set:     9,045 samples (20.0%)
+
+4. PREPROCESSING PIPELINE & PARAMETERS:
+   A. Log Transformation:
+      - Applied log1p transformation (log(x + 1)) to 'capital-gain' and 'capital-loss'
+        to eliminate extreme positive skewness and outliers.
+   B. Numerical Scaling:
+      - Scaler: MinMaxScaler (range [0, 1]) fitted on training numerical features:
+        ['age', 'education-num', 'capital-gain', 'capital-loss', 'hours-per-week'].
+   C. Categorical Tokenization / Embeddings:
+      - Categorical columns mapped to integer categorical IDs:
+        * workclass (7 classes)
+        * education_level (16 classes)
+        * marital-status (7 classes)
+        * occupation (14 classes)
+        * relationship (6 classes)
+        * race (5 classes)
+        * sex (2 classes)
+        * native-country (41 classes)
+      - Passed to learnable PyTorch nn.Embedding layers with shared embedding 
+        token dimension (d=32) for self-attention interaction.
+================================================================================

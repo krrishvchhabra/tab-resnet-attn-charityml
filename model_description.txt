@@ -1,0 +1,49 @@
+Project: Finding Donors for CharityML using Supervised Deep Learning
+Model Type: PROPOSED
+Total Trainable Parameters: 177,793
+Optimizer: AdamW (lr=0.001, weight_decay=0.0001)
+Scheduler: CosineAnnealingLR
+Batch Size: 256
+Epochs: 15
+Best Val F0.5 Score: 0.7341
+
+TabResNetAttn(
+  (cat_embeddings): ModuleList(
+    (0): Embedding(7, 32)
+    (1): Embedding(16, 32)
+    (2): Embedding(7, 32)
+    (3): Embedding(14, 32)
+    (4): Embedding(6, 32)
+    (5): Embedding(5, 32)
+    (6): Embedding(2, 32)
+    (7): Embedding(41, 32)
+  )
+  (num_tokenizers): ModuleList(
+    (0-4): 5 x Linear(in_features=1, out_features=32, bias=True)
+  )
+  (attn): MultiheadAttention(
+    (out_proj): NonDynamicallyQuantizableLinear(in_features=32, out_features=32, bias=True)
+  )
+  (attn_norm): LayerNorm((32,), eps=1e-05, elementwise_affine=True, bias=True)
+  (input_proj): Linear(in_features=416, out_features=128, bias=True)
+  (blocks): ModuleList(
+    (0-1): 2 x AdvancedResidualBlock(
+      (pre_norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True, bias=True)
+      (swiglu): SwiGLU(
+        (fc_val): Linear(in_features=128, out_features=128, bias=True)
+        (fc_gate): Linear(in_features=128, out_features=128, bias=True)
+      )
+      (dropout): Dropout(p=0.2, inplace=False)
+      (fc_out): Linear(in_features=128, out_features=128, bias=True)
+      (se): SqueezeAndExcitation(
+        (se): Sequential(
+          (0): Linear(in_features=128, out_features=32, bias=True)
+          (1): ReLU(inplace=True)
+          (2): Linear(in_features=32, out_features=128, bias=True)
+          (3): Sigmoid()
+        )
+      )
+    )
+  )
+  (head): Linear(in_features=128, out_features=1, bias=True)
+)
